@@ -3,7 +3,7 @@ import { Todo, useTodo } from '../context/TodoContext'
 
 const TodoForm = () => {
   const { addTodo } = useTodo()
-  const [newTodo, setNewTodo] = useState<Todo>({ id: 0, title: '', completed: false })
+  const [newTodo, setNewTodo] = useState<Todo>({ id: '', title: '', completed: false })
 
   const handleAddTodo = () => {
     if (newTodo.title) {
@@ -12,7 +12,7 @@ const TodoForm = () => {
         ...newTodo,
         id: uuid,
       })
-      setNewTodo({ id: 0, title: '', completed: false })
+      setNewTodo({ id: '', title: '', completed: false })
       console.log('Todo added:', { ...newTodo, id: uuid })
     }
   }
@@ -41,7 +41,7 @@ const TodoForm = () => {
         <div>
           <button
             type="submit"
-            onClick={() => setNewTodo({ id: 0, title: '', completed: false })}
+            onClick={() => setNewTodo({ id: '', title: '', completed: false })}
             className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             Clear
