@@ -1,7 +1,7 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react'
+import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
 export interface Todo {
-  id: number
+  id: string
   title: string
   completed: boolean
 }
@@ -9,9 +9,11 @@ export interface Todo {
 type TodoContext = {
   todos: Todo[]
   addTodo: (todo: Todo) => void
-  removeTodo: (index: number) => void
-  updateTodo: (index: number, updateTodo: Todo) => void
+  removeTodo: (index: string) => void
+  updateTodo: (index: string, updateTodo: Todo) => void
 }
+
+const LOCAL_STORAGE_KEY = 'todos'
 
 const TodoContext = createContext<TodoContext | undefined>(undefined)
 
@@ -20,22 +22,27 @@ type TodoProviderProps = {
 }
 
 const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
-  const [todos, setTodos] = useState<Todo[]>([])
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEY)
+    return storedTodos ? JSON.parse(storedTodos) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
+  }, [todos])
 
   const addTodo = (todo: Todo) => {
     setTodos([...todos, todo])
   }
 
-  const removeTodo = (index: number) => {
-    const newTodo = [...todos]
-    newTodo.splice(index, 1)
-    setTodos(newTodo)
+  const removeTodo = (id: string) => {
+    const newTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(newTodos)
   }
 
-  const updateTodo = (index: number, updatedTodo: Todo) => {
-    const newTodos = [...todos]
-    newTodos[index] = updatedTodo
-    setTodos(newTodos)
+  const updateTodo = (id: string, updatedTodo: Todo) => {
+    const updatedTodos = todos.map((todo) => (todo.id === id ? updatedTodo : todo))
+    setTodos(updatedTodos)
   }
 
   return <TodoContext.Provider value={{ todos, addTodo, removeTodo, updateTodo }}>{children}</TodoContext.Provider>
