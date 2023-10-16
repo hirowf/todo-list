@@ -7,7 +7,7 @@ const TodoForm = () => {
 
   const handleAddTodo = () => {
     if (newTodo.title) {
-      const uuid = Math.random()
+      const uuid = crypto.randomUUID()
       addTodo({
         ...newTodo,
         id: uuid,
