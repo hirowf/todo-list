@@ -1,27 +1,45 @@
-# React + TypeScript + Vite
+# To-Do List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de To-Do List simples criado em React, que permite adicionar, editar, marcar como concluído e excluir tarefas.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Adicionar uma nova tarefa.
+- Editar uma tarefa existente.
+- Marcar uma tarefa como concluída.
+- Excluir uma tarefa.
+- Persistência de dados: as tarefas são salvas em `localStorage`, para que você não perca seus dados ao atualizar a página.
 
-## Expanding the ESLint configuration
+## Como Rodar o Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Siga as instruções abaixo para rodar o projeto em seu ambiente de desenvolvimento:
 
-- Configure the top-level `parserOptions` property like this:
+### Pré-requisitos
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+- Node.js: Certifique-se de que você tenha o Node.js instalado em seu sistema. Você pode fazer o download em https://nodejs.org/.
+
+### Passos
+
+1. Clone o repositório para o seu computador:
+
+```shell
+   git clone https://github.com/seu-nome-de-usuario/todo-list-app.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Navegue até o diretório do projeto:
+
+```shell
+   cd todo-list-app
+```
+
+Instale as dependências do projeto:
+
+```shell
+   npm install
+```
+
+Inicie o aplicativo:
+
+```shell
+   npm run dev
+```
