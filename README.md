@@ -29,7 +29,7 @@ Siga as instruções abaixo para rodar o projeto em seu ambiente de desenvolvime
 Navegue até o diretório do projeto:
 
 ```shell
-   cd todo-list-app
+   cd todo-list
 ```
 
 Instale as dependências do projeto:
